@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amelyn Music Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/736x/ef/5f/8a/ef5f8a06b3179ab621c7f9ac73c5ac1e.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .player-container {
+            border: 3px solid #fb6f92;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            background-color: #f2a2a9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .playlist {
+            border: 3px solid #fb6f92;
+            background: url('https://i.pinimg.com/736x/39/25/a6/3925a626db025840401108d718ac967c.jpg') repeat;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+            font-family: 'Satisfy', cursive;
+            font-size: 18px;
+        }
+
+        .playlist-item:hover {
+            border: 3px solid #fb6f92;
+            background-color: #de5774;
+        }
+
+        .playlist-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        h2 {
+            border: 3px solid #fb6f92;
+            background-color: #facfd9;
+            margin: 10px 0;
+            font-family: 'Kaushan Script', cursive;
+            color: #de5774;
+        }
+
+        h3 {
+            color: #facfd9;
+            border: 3px solid #fb6f92;
+            background-color: #fb6f92;
+            margin: 10px 0;
+            font-family: 'Kaushan Script', cursive;
+        }
+
+        .song-title {
+            border: 3px solid #fb6f92;
+            background-color: #facfd9;
+            font-family: 'Kaushan Script', cursive;
+            font-size: 18px;
+            margin: 0; /* Removed margin to reduce space */
+            color: #de5774;
+        }
+
+        button {
+            border: 3px solid #fb6f92;
+            background-color: #fb6f92;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #f4a2b8;
+        }
+       
+        .floating-sticker.right {
+            top: 50px;
+            right: 20px;
+        }
+        .floating-sticker.right {
+            top: 50px;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container">
+        <h2>Amelyn Music Player</h2>
+        <img src="https://watermelon.crd.co/assets/images/gallery03/1a377153.gif?v=6332de85" class="right" alt="Sticker">
+        <iframe id="youtubePlayer" width="300" height="200" src="https://www.youtube.com/embed/XN7rKLpBKxs"
+            frameborder="0" allowfullscreen></iframe>
+        <img src="https://watermelon.crd.co/assets/images/gallery03/1a377153.gif?v=6332de85" class="right" alt="Sticker">
+        <div class="song-title" id="songTitle">方大同 - 因為你</div>
+        <button onclick="prevVideo()">Prev</button>
+        <button onclick="playCurrentVideo()">ʚ ♡ ɞ</button>
+        <button onclick="nextVideo()">Next</button>
+        <div class="playlist">
+            <h3>Music Playlist</h3><img src="https://watermelon.crd.co/assets/images/gallery03/1a377153.gif?v=6332de85"
+            <ul id="songList">
+                <li class="playlist-item" onclick="playVideo('XN7rKLpBKxs', '方大同 - 因為你')">
+                    <img src="https://img.youtube.com/vi/XN7rKLpBKxs/0.jpg" alt="Song 1"> 方大同 - 因為你
+                </li>
+                <li class="playlist-item" onclick="playVideo('qzvIZi9MqIU', '램씨 - Its the 2 n 4 n tambourine')">
+                    <img src="https://img.youtube.com/vi/qzvIZi9MqIU/0.jpg" alt="Song 2"> 램씨 - It's the 2 n 4 n tambourine
+                </li>
+                <li class="playlist-item" onclick="playVideo('6Ns4ArlRcrc', '王ADEN - 雙重人格')">
+                    <img src="https://img.youtube.com/vi/6Ns4ArlRcrc/0.jpg" alt="Song 3"> 王ADEN - 雙重人格
+                </li>
+                <li class="playlist-item" onclick="playVideo('MISrqYlKrys', 'れん - 一切合切')">
+                    <img src="https://img.youtube.com/vi/MISrqYlKrys/0.jpg" alt="Song 4"> れん - 一切合切
+                </li>
+                <li class="playlist-item" onclick="playVideo('eCYyIn4_NsQ', '颜人中 - 追风 (追风)')">
+                    <img src="https://img.youtube.com/vi/eCYyIn4_NsQ/0.jpg" alt="Song 5"> 颜人中 - 追风 (追风)
+                </li>
+                <li class="playlist-item" onclick="playVideo('NUWVJqwW5PU', 'Jeremy Passion - Bye Bye')">
+                    <img src="https://img.youtube.com/vi/NUWVJqwW5PU/0.jpg" alt="Song 6"> Jeremy Passion - Bye Bye
+                </li>
+                <li class="playlist-item" onclick="playVideo('xoea7taeOnc', 'Brb - Sharp knife')">
+                    <img src="https://img.youtube.com/vi/xoea7taeOnc/0.jpg" alt="Song 7"> Brb - Sharp knife
+                </li>
+                <li class="playlist-item" onclick="playVideo('VX8aV2gZcUE', 'Pank - 平行世界的游戏')">
+                    <img src="https://img.youtube.com/vi/VX8aV2gZcUE/0.jpg" alt="Song 8"> Pank - 平行世界的游戏
+                </li>
+                <li class="playlist-item" onclick="playVideo('F6rxZ6IyxXQ', 'Issa Rodriguez - Fragile')">
+                    <img src="https://img.youtube.com/vi/F6rxZ6IyxXQ/0.jpg" alt="Song 9"> Issa Rodriguez - Fragile
+                </li>
+                <li class="playlist-item" onclick="playVideo('h7RIOcnw0Eo', 'Sunkis - All for you')">
+                    <img src="https://img.youtube.com/vi/h7RIOcnw0Eo/0.jpg" alt="Song 10"> Sunkis - All for you
+                </li>
+                <li class="playlist-item" onclick="playVideo('LUYmuWGJOM8', 'Jeremy Passion - Its all good')">
+                    <img src="https://img.youtube.com/vi/LUYmuWGJOM8/0.jpg" alt="Song 11"> Jeremy Passion - Its all good
+                </li>
+                <li class="playlist-item" onclick="playVideo('hY-yPG53fH4', 'Owave - Wearing off')">
+                    <img src="https://img.youtube.com/vi/hY-yPG53fH4/0.jpg" alt="Song 12"> Owave - Wearing off
+                </li>
+                <li class="playlist-item" onclick="playVideo('80RIVXhEPMg', 'Q.Luv - 带你去未来')">
+                    <img src="https://img.youtube.com/vi/80RIVXhEPMg/0.jpg" alt="Song 13"> Q.Luv - 带你去未来
+                </li>
+                <li class="playlist-item" onclick="playVideo('GurozK-HRTw', 'David Tao – 飛機場的')">
+                    <img src="https://img.youtube.com/vi/GurozK-HRTw/0.jpg" alt="Song 14"> David Tao – 飛機場的
+                </li>
+                <li class="playlist-item" onclick="playVideo('GFP2WWbHY1k', 'Brendonse7an & Dan$on – KMH')">
+                    <img src="https://img.youtube.com/vi/GFP2WWbHY1k/0.jpg" alt="Song 15"> Brendonse7an & Dan$on – KMH
+                </li>
+                <li class="playlist-item" onclick="playVideo('AlkQVo6aXGY', 'Two Popetorn – ถ้าหา')">
+                    <img src="https://img.youtube.com/vi/AlkQVo6aXGY/0.jpg" alt="Song 16"> Two Popetorn – ถ้าหา
+                </li>
+                <li class="playlist-item" onclick="playVideo('wlvcZ4StPRM', '1415 – 선을 그어 주던가')">
+                    <img src="https://img.youtube.com/vi/wlvcZ4StPRM/0.jpg" alt="Song 17"> 1415 – 선을 그어 주던가
+                </li>
+                <li class="playlist-item" onclick="playVideo('kxyOvTpe_gI', '스탠딩 에그 – 친구에서 연인')">
+                    <img src="https://img.youtube.com/vi/kxyOvTpe_gI/0.jpg" alt="Song 17"> 스탠딩 에그 – 친구에서 연인
+                </li>
+                <li class="playlist-item" onclick="playVideo('vzWvfB_hE5Y', '216Project - Marry Me')">
+                    <img src="https://img.youtube.com/vi/vzWvfB_hE5Y/0.jpg" alt="Song 17"> 216Project - Marry Me
+                </li>
+                <li class="playlist-item" onclick="playVideo('CZLEHdbEhW4', '램씨 – Beauty')">
+                    <img src="https://img.youtube.com/vi/CZLEHdbEhW4/0.jpg" alt="Song 17"> 램씨 – Beauty
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let videoIds = ['XN7rKLpBKxs', 'qzvIZi9MqIU', '6Ns4ArlRcrc', 'MISrqYlKrys', 'eCYyIn4_NsQ', 'NUWVJqwW5PU', 'xoea7taeOnc', 'VX8aV2gZcUE', 'F6rxZ6IyxXQ', 'h7RIOcnw0Eo', 'LUYmuWGJOM8', 'hY-yPG53fH4', '80RIVXhEPMg', 'GurozK-HRTw', 'GFP2WWbHY1k', 'AlkQVo6aXGY', 'wlvcZ4StPRM', 'kxyOvTpe_gI', 'vzWvfB_hE5Y', 'CZLEHdbEhW4'];
+        let currentIndex = 0;
+
+        function playVideo(videoId, title) {
+            document.getElementById("youtubePlayer").src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+            document.getElementById("songTitle").textContent = title;
+        }
+
+        function nextVideo() {
+            currentIndex = (currentIndex + 1) % videoIds.length;
+            playVideo(videoIds[currentIndex], getSongTitle(currentIndex));
+        }
+
+        function prevVideo() {
+            currentIndex = (currentIndex - 1 + videoIds.length) % videoIds.length;
+            playVideo(videoIds[currentIndex], getSongTitle(currentIndex));
+        }
+
+        function getSongTitle(index) {
+            const titles = [
+                '方大同 - 因為你',
+                '램씨 - Its the 2 n 4 n tambourine',
+                '王ADEN - 雙重人格',
+                'れん - 一切合切',
+                '颜人中 - 追风 (追风)',
+                'Jeremy Passion - Bye Bye',
+                'Brb - Sharp knife',
+                'Pank - 平行世界的游戏',
+                'Issa Rodriguez - Fragile',
+                'Sunkis - All for you',
+                'Jeremy Passion - Its all good',
+                'Owave - Wearing off',
+                'Q.Luv - 带你去未来',
+                'David Tao – 飛機場的',
+                'Brendonse7an & Dan$on – KMH',
+                'Two Popetorn – ถ้าหาก',
+                '1415 – 선을 그어 주던가',
+                '스탠딩 에그 – 친구에서 연인',
+                '216Project - Marry Me',
+                '램씨 – Beauty',
+            ];
+            return titles[index];
+        }
+    </script>
+</body>
+
+</html>
